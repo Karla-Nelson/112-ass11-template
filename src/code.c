@@ -121,7 +121,11 @@ int is_anagram(const char *a, const char *b)
 
 void test_strlen_basic(void)
 {
-    TEST_FAIL_MESSAGE("Not implemented yet: write test_strlen_basic (see STEP 1 in code.h)");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(5, (int)strlen("Hello"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, (int)strlen("a"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(13, (int)strlen("Hello, World!"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(4, (int)strlen("  x "), "This isn't correct");
+    return;
 }
 
 /*
@@ -138,7 +142,14 @@ void test_strlen_basic(void)
 
 void test_strlen_edge_cases(void)
 {
-    TEST_FAIL_MESSAGE("Not implemented yet: write test_strlen_edge_cases (see STEP 2 in code.h)");
+    char buf[10] = "abc";
+    char embedded[] = "ab\0cd";
+
+    TEST_ASSERT_EQUAL_INT_MESSAGE(0, (int)strlen(""), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(3, (int)strlen(buf), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(2, (int)strlen(embedded), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(5, (int)strlen("Line\n"), "This isn't correct");
+    return;
 }
 
 /*
@@ -158,7 +169,15 @@ void test_strlen_edge_cases(void)
 
 void test_strcmp_signs(void)
 {
-    TEST_FAIL_MESSAGE("Not implemented yet: write test_strcmp_signs (see STEP 3 in code.h)");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(0, strcmp("same", "same"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, (strcmp("apple", "banana") < 0), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, (strcmp("banana", "apple") > 0), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, (strcmp("app", "apple") < 0), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, (strcmp("apple", "app") > 0), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, (strcmp("Zebra", "apple") < 0), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, (strcmp("a", "A") > 0), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, (strcmp("", "a") < 0), "This isn't correct");
+    return;
 }
 
 /*
@@ -173,7 +192,14 @@ void test_strcmp_signs(void)
 
 void test_atoi_valid(void)
 {
-    TEST_FAIL_MESSAGE("Not implemented yet: write test_atoi_valid (see STEP 4 in code.h)");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(123, atoi("123"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(0, atoi("0"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(-45, atoi("-45"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(7, atoi("+7"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(42, atoi("  42"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(7, atoi("007"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(2147483647, atoi("2147483647"), "This isn't correct");
+    return;
 }
 
 /*
@@ -189,7 +215,13 @@ void test_atoi_valid(void)
 
 void test_atoi_partial_and_invalid(void)
 {
-    TEST_FAIL_MESSAGE("Not implemented yet: write test_atoi_partial_and_invalid (see STEP 5 in code.h)");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(12, atoi("12abc"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(0, atoi("abc"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(0, atoi(""), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(0, atoi("-"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(3, atoi("3.9"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(1, atoi("1 2"), "This isn't correct");
+    return;
 }
 
 /*
@@ -205,7 +237,13 @@ void test_atoi_partial_and_invalid(void)
 
 void test_atol(void)
 {
-    TEST_FAIL_MESSAGE("Not implemented yet: write test_atol (see STEP 6 in code.h)");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(123456, (int)atol("123456"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(2000000000, (int)atol("2000000000"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(-2000000000, (int)atol("-2000000000"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(-99, (int)atol("-99"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(42, (int)atol("42xyz"), "This isn't correct");
+    TEST_ASSERT_EQUAL_INT_MESSAGE(0, (int)atol("x"), "This isn't correct");
+    return;
 }
 
 /*
@@ -220,7 +258,14 @@ void test_atol(void)
 
 void test_atof(void)
 {
-    TEST_FAIL_MESSAGE("Not implemented yet: write test_atof (see STEP 7 in code.h)");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(3.5, atof("3.5"), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(-0.25, atof("-0.25"), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(1000.0, atof("1e3"), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(2.5, atof("  2.5xyz"), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(0.0, atof("abc"), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(0.5, atof(".5"), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(42.0, atof("42"), "This isn't correct");
+    return;
 }
 
 /* ======================================================================
@@ -239,7 +284,14 @@ void test_atof(void)
 
 void test_sqrt(void)
 {
-    TEST_FAIL_MESSAGE("Not implemented yet: write test_sqrt (see STEP 8 in code.h)");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(0.0, sqrt(0), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(1.0, sqrt(1), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(4.0, sqrt(16), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(12.0, sqrt(144), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(0.5, sqrt(0.25), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(1000.0, sqrt(1000000), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(1.4142135623730951, sqrt(2), "This isn't correct");
+    return;
 }
 
 /*
@@ -255,7 +307,16 @@ void test_sqrt(void)
 
 void test_pow(void)
 {
-    TEST_FAIL_MESSAGE("Not implemented yet: write test_pow (see STEP 9 in code.h)");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(1024.0, pow(2, 10), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(1.0, pow(5, 0), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(1.0, pow(0, 0), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(0.5, pow(2, -1), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(-8.0, pow(-2, 3), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(4.0, pow(-2, 2), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(3.0, pow(9, 0.5), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(100.0, pow(10, 2), "This isn't correct");
+    TEST_ASSERT_EQUAL_DOUBLE_MESSAGE(1, pow(1, 1000), "This isn't correct");
+    return;
 }
 
 /*
